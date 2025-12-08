@@ -45,7 +45,7 @@ const handler = async (req: Request): Promise<Response> => {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "Solid Triangle <onboarding@resend.dev>",
+        from: "Solid Triangle <onboarding@solidtrianglebotswana.com>",
         to: ["lamegare@yahoo.com"],
         subject: `New Contact Form Submission from ${name}`,
         html: `
@@ -75,7 +75,7 @@ const handler = async (req: Request): Promise<Response> => {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "Solid Triangle <onboarding@resend.dev>",
+        from: "Solid Triangle <onboarding@solidtrianglebotswana.com>",
         to: [email],
         subject: "Thank you for contacting Solid Triangle",
         html: `
