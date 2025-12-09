@@ -35,34 +35,13 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
 {/* Logo */}
+{/* Logo */}
 <a href="#home" className="flex items-center gap-3 group">
-  <div className="relative">
-    <div className="absolute inset-0 bg-primary/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all" />
-
-    {/* Dynamic Logo Based on Scroll */}
-    <img
-      src={isScrolled ? "/logo-dark.png" : "/logo-light.png"}
-      alt="Solid Triangle Logo"
-      className="relative w-14 h-14 object-contain transition-all duration-300 group-hover:scale-105"
-    />
-  </div>
-
-  <div className="flex flex-col">
-    <span
-      className={`text-xl font-display font-bold ${
-        isScrolled ? 'text-primary' : 'text-white'
-      } transition-colors`}
-    >
-      Solid Triangle
-    </span>
-    <span
-      className={`text-xs ${
-        isScrolled ? 'text-muted-foreground' : 'text-white/70'
-      } transition-colors`}
-    >
-      Pty Ltd
-    </span>
-  </div>
+  <img
+    src={isScrolled ? "/logo-dark.png" : "/logo-light.png"}
+    alt="Solid Triangle Logo"
+    className="w-32 h-auto object-contain transition-all duration-300 group-hover:scale-110"
+  />
 </a>
 
 
