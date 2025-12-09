@@ -16,7 +16,7 @@ const Footer = () => {
             <a href="#home" className="flex items-center gap-4 mb-6 group">
               <div className="relative w-40 h-20">
                 <img
-                  src="/dark-logo.png"
+                  src="/logo-dark.png"
                   alt="Solid Triangle"
                   className="object-contain w-full h-full"
                 />
