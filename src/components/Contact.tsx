@@ -92,7 +92,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Phone</h4>
-                    <p className="text-muted-foreground text-sm">(+267) 73 400 400</p>
+                    <p className="text-muted-foreground text-sm">(+267) 77524366</p>
                   </div>
                 </div>
 
@@ -102,8 +102,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Email</h4>
-                    <a href="mailto:lamegare@yahoo.com" className="text-primary hover:underline text-sm">
-                      lamegare@yahoo.com
+                    <a href="mailto:info@solidtrianglebotswana.com" className="text-primary hover:underline text-sm">
+                      info@solidtrianglebotswana.com
                     </a>
                   </div>
                 </div>
@@ -115,7 +115,7 @@ const Contact = () => {
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Address</h4>
                     <p className="text-muted-foreground text-sm">
-                      Phase 4 Plot 22211<br />
+                      Plot 22211 nshaiwa street <br />Phase 4 ,
                       Gaborone, Botswana
                     </p>
                   </div>
