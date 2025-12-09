@@ -108,15 +108,15 @@ const Footer = () => {
                   <Phone className="w-4 h-4 text-primary" />
                 </div>
                 <div>
-                  <span className="text-gray-400 text-sm block">(+267) 73 400 400</span>
+                  <span className="text-gray-400 text-sm block">(+267) 77 524 366</span>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
                   <Mail className="w-4 h-4 text-primary" />
                 </div>
-                <a href="mailto:lamegare@yahoo.com" className="text-gray-400 hover:text-primary transition-colors text-sm">
-                  lamegare@yahoo.com
+                <a href="mailto:info@solidtrianglebotswana.com" className="text-gray-400 hover:text-primary transition-colors text-sm">
+                  info@solidtrianglebotswana.com
                 </a>
               </li>
               <li className="flex items-start gap-3">
@@ -124,7 +124,7 @@ const Footer = () => {
                   <MapPin className="w-4 h-4 text-primary" />
                 </div>
                 <span className="text-gray-400 text-sm">
-                  Phase 4 Plot 22211<br />
+                  Plot 22211 nshaiwa street<br />  Phase 4 ,
                   Gaborone, Botswana
                 </span>
               </li>
