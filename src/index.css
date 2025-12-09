@@ -6,206 +6,53 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;        /* white */
-    --foreground: 0 0% 0%;         /* black */
+    /* BASE COLORS */
+    --primary: #561530; /* deep wine */
+    --primary-light: #7A1E45; /* vibrant tint */
+    --primary-glow: #B83266; /* neon edge */
+    --primary-dark: #3A0E20;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 0%;
+    --background: #000000;
+    --foreground: #ffffff;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 0%;
+    --card: #0A0A0A;
+    --card-foreground: #ffffff;
 
-    /* PRIMARY — #561530 */
-    --primary: 338 61% 21%;  /* converted from #561530 */
-    --primary-foreground: 0 0% 100%;
+    --popover: #0A0A0A;
+    --popover-foreground: #ffffff;
 
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 100%;
+    /* UI COLORS */
+    --secondary: #1A1A1A;
+    --secondary-foreground: #ffffff;
 
-    --muted: 0 0% 95%;
-    --muted-foreground: 0 0% 40%;
+    --muted: #1A1A1A;
+    --muted-foreground: #cccccc;
 
-    /* ACCENT — #561530 */
-    --accent: 338 61% 21%;
-    --accent-foreground: 0 0% 0%;
+    --accent: #B83266;
+    --accent-foreground: #ffffff;
 
-    /* DESTRUCTIVE — same #561530 unless you want pure red */
-    --destructive: 338 61% 21%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: #561530;
+    --destructive-foreground: #ffffff;
 
-    --border: 0 0% 85%;
-    --input: 0 0% 85%;
-    --ring: 338 61% 21%;
+    --border: #7A1E45;
+    --input: #7A1E45;
+    --ring: #B83266;
 
     --radius: 0.75rem;
 
-    /* Custom design tokens updated to use #561530 */
+    /* CUSTOM DESIGN TOKENS */
     --hero-gradient: linear-gradient(
       135deg,
-      hsl(0 0% 15%) 0%,
-      hsl(0 0% 0%) 50%,
-      hsl(0 0% 10%) 100%
+      #000000 0%,
+      #561530 55%,
+      #7A1E45 90%
     );
 
-    --section-dark: 0 0% 10%;
+    --section-dark: #0D0D0D;
 
-    --glow-primary: 0 0 60px hsl(338 61% 21% / 0.3);
-    --glow-accent: 0 0 40px hsl(338 61% 21% / 0.2);
+    --glow-primary: 0 0 80px #B8326633;
+    --glow-accent: 0 0 50px #7A1E4533;
 
-    --triangle-pattern: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 52H0L30 0z' fill='%23561530' fill-opacity='0.03'/%3E%3C/svg%3E");
+    --triangle-pattern: none;
   }
-
-  .dark {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
-
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 100%;
-
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 100%;
-
-    --primary: 338 61% 21%;
-    --primary-foreground: 0 0% 0%;
-
-    --secondary: 0 0% 20%;
-    --secondary-foreground: 0 0% 100%;
-
-    --muted: 0 0% 20%;
-    --muted-foreground: 0 0% 70%;
-
-    --accent: 338 61% 21%;
-    --accent-foreground: 0 0% 0%;
-
-    --destructive: 338 61% 21%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 338 61% 21%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Inter', sans-serif;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Space Grotesk', sans-serif;
-  }
-}
-
-@layer components {
-  .hero-gradient {
-    background: var(--hero-gradient);
-  }
-
-  .section-dark {
-    background-color: hsl(var(--section-dark));
-  }
-
-  .glow-primary {
-    box-shadow: var(--glow-primary);
-  }
-
-  .glow-accent {
-    box-shadow: var(--glow-accent);
-  }
-
-  .triangle-pattern {
-    background-image: var(--triangle-pattern);
-  }
-
-  .text-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(
-      135deg,
-      hsl(338 61% 21%) 0%,
-      hsl(338 61% 21% / 0.8) 100%
-    );
-  }
-
-  .card-hover {
-    @apply transition-all duration-300 ease-out;
-  }
-
-  .card-hover:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px -12px hsl(338 61% 21% / 0.15);
-  }
-
-  .btn-glow {
-    @apply relative overflow-hidden;
-  }
-
-  .btn-glow::before {
-    content: '';
-    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
-    background: linear-gradient(
-      135deg,
-      hsl(338 61% 21% / 0.2) 0%,
-      hsl(338 61% 21% / 0.2) 100%
-    );
-  }
-
-  .btn-glow:hover::before {
-    @apply opacity-100;
-  }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .animate-pulse-slow {
-    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-
-  .animate-slide-up {
-    animation: slideUp 0.6s ease-out forwards;
-  }
-
-  .animate-fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
-  }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-}
-
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-.shimmer {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    hsl(338 61% 21% / 0.1),
-    transparent
-  );
-  background-size: 200% 100%;
-  animation: shimmer 3s infinite;
 }
