@@ -1,4 +1,4 @@
-import { Triangle, Phone, Mail, MapPin, Linkedin, Twitter, Facebook, ArrowUp } from 'lucide-react';
+import { Phone, Mail, MapPin, Linkedin, Twitter, Facebook, ArrowUp } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -8,24 +8,23 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gradient-to-b from-gray-900 to-black text-white pt-20 pb-8 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 triangle-pattern opacity-5" />
-      
+    <footer className="bg-gradient-to-b from-gray-900 to-black text-white pt-24 pb-12 relative overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Company Info */}
           <div>
-            <a href="#home" className="flex items-center gap-3 mb-6 group">
-              <div className="relative">
-                <div className="absolute inset-0 bg-primary/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all" />
-                <Triangle className="relative w-12 h-12 text-primary fill-primary/20 group-hover:fill-primary/40 transition-all" />
+            <a href="#home" className="flex items-center gap-4 mb-6 group">
+              <div className="relative w-40 h-20">
+                <img
+                  src="/dark-logo.png"
+                  alt="Solid Triangle"
+                  className="object-contain w-full h-full"
+                />
               </div>
               <div className="flex flex-col">
                 <span className="text-2xl font-display font-bold text-white">
                   Solid Triangle
                 </span>
-                <span className="text-xs text-gray-400">Pty Ltd</span>
               </div>
             </a>
             <p className="text-gray-400 text-sm mb-6 leading-relaxed">
@@ -136,7 +135,7 @@ const Footer = () => {
         <div className="border-t border-white/10 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-gray-400 text-sm">
-              © {currentYear} Solid Triangle Pty Ltd. All rights reserved.
+              © {currentYear} Solid Triangle. All rights reserved.
             </p>
             <div className="flex gap-6">
               <a href="#" className="text-gray-400 hover:text-primary transition-colors text-sm">
