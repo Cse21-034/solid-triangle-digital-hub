@@ -1,3 +1,6 @@
+// Copy this ENTIRE code and paste it in Supabase Edge Function editor
+// Replace ALL existing code in supabase/functions/send-resend-email/index.ts
+
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 
 const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY');
