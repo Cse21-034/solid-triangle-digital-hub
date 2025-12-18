@@ -1,8 +1,8 @@
 import { Button } from '@/components/ui/button';
 import { Phone, Mail, MapPin, Clock, Send, Loader2 } from 'lucide-react';
 import { useState } from 'react';
+import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import { sendEmail } from '@/integrations/resend';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -20,15 +20,15 @@ const Contact = () => {
     setIsLoading(true);
 
     try {
-      const { data, error } = await sendEmail(
-        'info@solidtrianglebotswana.com', 
-        'New Contact Form Submission',
-        `<p>Name: ${formData.name}</p>
-         <p>Email: ${formData.email}</p>
-         <p>Phone: ${formData.phone}</p>
-         <p>Company: ${formData.company}</p>
-         <p>Message: ${formData.message}</p>`
-      );
+      const { data, error } = await supabase.functions.invoke('send-resend-email', {
+        body: {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          message: formData.message,
+        },
+      });
 
       if (error) throw error;
 
