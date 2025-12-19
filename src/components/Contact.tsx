@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -62,8 +61,7 @@ This message was sent from the Solidcare Training Services website contact form.
       // Create mailto link with all the information
       const mailtoLink = `mailto:info@solidcaretraining.co.bw?subject=${encodeURIComponent('New Training Quote Request - ' + data.service)}&body=${encodeURIComponent(emailBody)}`;
       
-      // Also create a FormSubmit.co backup (free form backend service)
-      // This will send the email even if mailto doesn't work
+      // Also create a FormSubmit.co backup
       const formSubmitResponse = await fetch('https://formsubmit.co/ajax/info@solidcaretraining.co.bw', {
         method: 'POST',
         headers: {
@@ -105,7 +103,7 @@ This message was sent from the Solidcare Training Services website contact form.
   };
 
   return (
-    <Layout>
+    <div id="contact" className="w-full">
       {/* Hero Section */}
       <section className="hero-gradient text-primary-foreground py-16 md:py-24">
         <div className="container">
@@ -277,7 +275,7 @@ This message was sent from the Solidcare Training Services website contact form.
           </div>
         </div>
       </section>
-    </Layout>
+    </div>
   );
 };
 
