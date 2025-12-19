@@ -59,10 +59,10 @@ This message was sent from the Solidcare Training Services website contact form.
       `.trim();
 
       // Create mailto link with all the information
-      const mailtoLink = `mailto:info@solidcaretraining.co.bw?subject=${encodeURIComponent('New Training Quote Request - ' + data.service)}&body=${encodeURIComponent(emailBody)}`;
+      const mailtoLink = `mailto:technical@solidcareservices.com?subject=${encodeURIComponent('New Training Quote Request - ' + data.service)}&body=${encodeURIComponent(emailBody)}`;
       
       // Also create a FormSubmit.co backup
-      const formSubmitResponse = await fetch('https://formsubmit.co/ajax/info@solidcaretraining.co.bw', {
+      const formSubmitResponse = await fetch('https://formsubmit.co/ajax/technical@solidcareservices.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
