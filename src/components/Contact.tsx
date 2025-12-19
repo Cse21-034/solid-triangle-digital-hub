@@ -18,66 +18,44 @@ const Contact = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    const data = {
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone,
-      company: formData.company,
-      message: formData.message,
-    };
-
     try {
-      // 1. Create email body exactly as in your uploaded example
-      const emailBody = `
-New Contact Form Submission from Solid Triangle Website
-
-Name: ${data.name}
-Email: ${data.email}
-Phone: ${data.phone || 'Not provided'}
-Company: ${data.company || 'Not provided'}
-
-Message:
-${data.message}
-
----
-This message was sent from the Solid Triangle Digital Hub contact form.
-      `.trim();
-
-      // 2. Create mailto link
-      const mailtoLink = `mailto:technical@solidcareservices.com?subject=${encodeURIComponent('New Contact Form Submission - ' + data.name)}&body=${encodeURIComponent(emailBody)}`;
-      
-      // 3. Send via FormSubmit.co AJAX (direct submission used in your file)
-      await fetch('https://formsubmit.co/ajax/technical@solidcareservices.com', {
+      // Direct submission using the AJAX approach from your reference file
+      const response = await fetch('https://formsubmit.co/ajax/technical@solidcareservices.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
-          company: data.company,
-          message: data.message,
-          _subject: `New Contact Submission from ${data.name}`,
-          _template: 'table',
-          _captcha: 'false'
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          message: formData.message,
+          _subject: `New Contact Submission from ${formData.name}`,
+          _captcha: 'false', // Disables the "I am not a robot" page
+          _template: 'table'
         })
-      }).catch(() => null);
-
-      // 4. Open mailto link as a direct fallback
-      window.location.href = mailtoLink;
-      
-      toast({
-        title: "Message Sent!",
-        description: "Thank you for your message. We will get back to you soon!",
       });
-      
-      setFormData({ name: '', email: '', phone: '', company: '', message: '' });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        toast({
+          title: "Message Sent!",
+          description: "Thank you for your message. We will get back to you soon!",
+        });
+        
+        // Reset form fields
+        setFormData({ name: '', email: '', phone: '', company: '', message: '' });
+      } else {
+        throw new Error("Submission failed");
+      }
     } catch (error) {
+      console.error('Submission error:', error);
       toast({
         title: "Error",
-        description: "There was an error sending your message. Please try contacting us directly.",
+        description: "Failed to send message. Please try again or contact us directly.",
         variant: "destructive",
       });
     } finally {
@@ -110,9 +88,7 @@ This message was sent from the Solid Triangle Digital Hub contact form.
         <div className="grid lg:grid-cols-5 gap-12 max-w-7xl mx-auto">
           <div className="lg:col-span-2 space-y-6">
             <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-3xl p-8 border border-primary/20">
-              <h3 className="text-2xl font-display font-bold text-foreground mb-6">
-                Contact Information
-              </h3>
+              <h3 className="text-2xl font-display font-bold text-foreground mb-6">Contact Information</h3>
               <div className="space-y-6">
                 <div className="flex items-start gap-4 p-4 rounded-2xl bg-white/50 hover:bg-white transition-colors">
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
@@ -142,67 +118,36 @@ This message was sent from the Solid Triangle Digital Hub contact form.
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-semibold text-foreground mb-2">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      disabled={isLoading}
-                      className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-foreground"
-                      placeholder="John Doe"
-                    />
+                    <label htmlFor="name" className="block text-sm font-semibold text-foreground mb-2">Full Name *</label>
+                    <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required disabled={isLoading} className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-foreground" placeholder="John Doe" />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-semibold text-foreground mb-2">
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      disabled={isLoading}
-                      className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-foreground"
-                      placeholder="john@company.com"
-                    />
+                    <label htmlFor="email" className="block text-sm font-semibold text-foreground mb-2">Email Address *</label>
+                    <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required disabled={isLoading} className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-foreground" placeholder="john@company.com" />
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="phone" className="block text-sm font-semibold text-foreground mb-2">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} disabled={isLoading} className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-foreground" placeholder="+267 XX XXX XXX" />
+                  </div>
+                  <div>
+                    <label htmlFor="company" className="block text-sm font-semibold text-foreground mb-2">Company Name</label>
+                    <input type="text" id="company" name="company" value={formData.company} onChange={handleChange} disabled={isLoading} className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-foreground" placeholder="Your Company" />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-semibold text-foreground mb-2">
-                    Your Message *
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    disabled={isLoading}
-                    rows={6}
-                    className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none text-foreground"
-                    placeholder="Tell us about your project..."
-                  />
+                  <label htmlFor="message" className="block text-sm font-semibold text-foreground mb-2">Your Message *</label>
+                  <textarea id="message" name="message" value={formData.message} onChange={handleChange} required disabled={isLoading} rows={6} className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none resize-none text-foreground" placeholder="Tell us about your project..." />
                 </div>
 
-                <Button type="submit" variant="hero" size="lg" className="w-full group" disabled={isLoading}>
+                <Button type="submit" variant="default" size="lg" className="w-full group" disabled={isLoading}>
                   {isLoading ? (
-                    <>
-                      <Loader2 className="w-5 h-5 animate-spin" />
-                      Sending...
-                    </>
+                    <><Loader2 className="w-5 h-5 animate-spin mr-2" />Sending...</>
                   ) : (
-                    <>
-                      Send Message
-                      <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </>
+                    <>Send Message <Send className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" /></>
                   )}
                 </Button>
               </form>
